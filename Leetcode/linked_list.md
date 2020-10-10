@@ -2,6 +2,7 @@
 
 + [Reverse Linked List](#reverse-linked-list)
 + [Middle Of The Linked List](#middle-of-the-linked-list)
++ [Palindrome Linked List](#palindrome-linked-list)
 
 ## Reverse Linked List
 
@@ -45,6 +46,36 @@ class Solution:
             current = current.next
         return a[len(a)//2]
 ```
+
+## Palindrome Linked List
+
+https://leetcode.com/problems/palindrome-linked-list
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        lst = []
+        current = head
+        while(current):
+            lst.append(current.val)
+            current = current.next
+        p1 = 0
+        p2 = len(lst)-1
+        while(p1<p2):
+            if lst[p1]!=lst[p2]:
+                return False
+            else:
+                p1+=1
+                p2-=1
+        return True
+```
+
+
 
 
 
