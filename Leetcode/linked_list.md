@@ -3,6 +3,7 @@
 + [Middle Of The Linked List](#middle-of-the-linked-list)
 + [Palindrome Linked List](#palindrome-linked-list)
 + [Merge Two Sorted Lists](#merge-two-sorted-lists)
++ [Remove nth Node From End Of List](#remove-nth-node-from-end-of-list)
 
 ## Reverse Linked List
 
@@ -100,6 +101,42 @@ class Solution:
         tail.next = l1 or l2 #если один оказалася меньше другого, то всё оставшееся от листа...
         return start.next
 ```
+
+
+## Remove nth Node From End Of List
+
+https://leetcode.com/problems/remove-nth-node-from-end-of-list
+
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        curr = head
+        amount = 0
+        while curr is not None:
+            curr = curr.next
+            amount = amount + 1
+        k = amount - n #Поиск номера нужного элемента
+        prev = None
+        nxt = head
+        while k!= 0:
+            prev = nxt
+            nxt = nxt.next
+            k = k - 1
+        if prev is None:
+            return head.next
+        else:
+            prev.next = nxt.next
+            nxt.next = None
+        return head
+```
+
+
 
 
 
