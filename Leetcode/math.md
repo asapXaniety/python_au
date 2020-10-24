@@ -1,6 +1,7 @@
 # Math
 
 + [Reverse Integer](#reverse-integer)
++ [Palindrome Number](#palindrome-number)
 
 ## Reverse Integer
 
@@ -26,4 +27,26 @@ class Solution:
         else:
             return -1 * rev
 ```
+
+## Palindrome Number
+
+https://leetcode.com/problems/palindrome-number/
+
+```python
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if (x < 0):
+            return False
+        rev = 0
+        num = x
+        x = abs(x)
+        while (x > 0):
+            last = x % 10    
+            x = x // 10 
+            rev = rev * 10 + last
+        return num == rev
+```
+
+
+
 
