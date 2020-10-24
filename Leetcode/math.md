@@ -3,6 +3,7 @@
 + [Reverse Integer](#reverse-integer)
 + [Palindrome Number](#palindrome-number)
 + [Fizz Buzz](#fizz-buzz)
++ [Fibonacci Number](#fibonacci-number)
 
 ## Reverse Integer
 
@@ -66,4 +67,24 @@ class Solution:
             else:
                 output.append(str(i))           
         return output
+```
+
+## Fibonacci Number
+
+https://leetcode.com/problems/fibonacci-number/
+
+```python
+class Solution:
+    def fib(self, N: int) -> int:
+        x1 = 0
+        x2 = 1
+        if N < 0:
+            return x1
+        if N == 1:
+            return x2
+        if N > 30:
+            return 0
+        for _ in range(N):
+            x1 , x2 = x2, x1+x2
+        return x1
 ```
