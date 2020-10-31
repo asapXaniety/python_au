@@ -97,7 +97,10 @@ class Solution:
                 tail.next = l2
                 l2 = l2.next
             tail = tail.next 
-        tail.next = l1 or l2 #если один оказалася меньше другого, то всё оставшееся от листа...
+        if l1 is None:
+            tail.next = l2
+        if l2 is None:
+            tail.next = l1
         return start.next
 ```
 
