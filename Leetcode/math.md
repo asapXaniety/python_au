@@ -4,6 +4,7 @@
 + [Palindrome Number](#palindrome-number)
 + [Fizz Buzz](#fizz-buzz)
 + [Fibonacci Number](#fibonacci-number)
++ [Base 7](#base-7)
 
 ## Reverse Integer
 
@@ -87,4 +88,27 @@ class Solution:
         for _ in range(N):
             x1 , x2 = x2, x1+x2
         return x1
+```
+
+## Base 7
+
+https://leetcode.com/problems/base-7/
+
+```python
+class Solution:
+    def convertToBase7(self, num: int) -> str:
+        if num == 0:
+            return "0"
+        s = []
+        n = num
+        num = abs(num)
+        while num>0:
+            s.append(str(num%7))
+            num = num // 7
+        if n > 0:
+            return ''.join(reversed(s))
+        else:
+            sign = '-'
+            s.append(sign)
+            return ''.join(reversed(s))
 ```
