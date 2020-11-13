@@ -5,6 +5,7 @@
 + [Fizz Buzz](#fizz-buzz)
 + [Fibonacci Number](#fibonacci-number)
 + [Base 7](#base-7)
++ [Sqrt(x)](#sqrtx)
 
 ## Reverse Integer
 
@@ -111,4 +112,31 @@ class Solution:
             sign = '-'
             s.append(sign)
             return ''.join(reversed(s))
+```
+
+## sqrt(x)
+
+https://leetcode.com/problems/sqrtx/
+
+```python
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        if x == 1:
+            return 1
+        lower = 0
+        if x > 5: 
+            upper = x // 2
+        else:
+            upper = x
+        middle = (lower + upper) // 2
+        while True:
+            if x == middle * middle:
+                return middle
+            elif x < middle * middle:
+                upper = middle
+            else:
+                lower = middle
+            if middle == (lower + upper) // 2:
+                return middle
+            middle = (lower + upper) // 2
 ```
