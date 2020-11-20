@@ -2,6 +2,7 @@
 
 + [Valid anagram](#valid-anagram)
 + [Reverse string](#reverse-string)
++ [Reverse vowels of a string](#reverse-vowerls-of-a-string)
 
 ## Valid Anagram
 
@@ -30,3 +31,27 @@ class Solution:
             pointer_2 -= 1
         return s
 ``` 
+
+## Reverse Vowels of a String
+
+https://leetcode.com/problems/reverse-vowels-of-a-string/
+
+```python
+class Solution:  
+    def getVowel(self, s):
+        res = []
+        for i in s:
+            if i in "aeiouAEIOU":
+                res.append(i)
+        return res
+    
+    def reverseVowels(self, s: str) -> str:
+        reverse = self.getVowel(s)
+        word = ""
+        for i in s:
+            if i in "aeiouAEIOU":
+                word += reverse.pop()
+            else:
+                word += i
+        return word 
+```
