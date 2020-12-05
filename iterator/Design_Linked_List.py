@@ -13,6 +13,7 @@ class MyLinkedList(object):
         """
         self.head = None
         self.size = 0
+        self.count = 0
 
         def get(self, index: int) -> int:
             """
@@ -85,3 +86,19 @@ class MyLinkedList(object):
 # obj.addAtTail(val)
 # obj.addAtIndex(index,val)
 # obj.deleteAtIndex(index)
+
+        def Print_Linked_List(self):
+            x = self.head
+            for i in range(self.size):
+                print(x.val)
+                x = x.next
+
+        def __next__(self):
+            if self.count < self.size:
+                self.count += 1
+                return self.get(self.count - 1)
+            else:
+                raise StopIteration
+
+        def __iter__(self):
+            return self
