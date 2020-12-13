@@ -1,6 +1,7 @@
 # Intervals
 
 + [Non-overlapping Intervals](#non-overlapping-intervals)
++ [Merge Intervals](#merge-intervals)
 
 ## Non-overlapping Intervals
 
@@ -24,4 +25,23 @@ class Solution:
                 start_previous = start_next
                 end_previous = end_next       
         return count
+```
+
+## Merge Intervals
+
+https://leetcode.com/problems/merge-intervals
+
+```python
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        if not intervals:
+            return intervals 
+        intervals = sorted(intervals, key = lambda x: x[0]) #сортировка по первому значению
+        result = [intervals[0]] 
+        for interval in intervals[1:]:
+            if interval[0] <= result[-1][-1]: #проверка 
+                result[-1][1] = max(interval[1], result[-1][1]) # замена конечного числа на максимальное
+            else:
+                result.append(interval) #добавление интервала
+        return result
 ```
