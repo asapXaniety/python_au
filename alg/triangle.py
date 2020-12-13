@@ -69,4 +69,3 @@ def main(file_from, file_to):
 if __name__ == "__main__":
      files = sys.argv
      main(files[1], files[2])
-
