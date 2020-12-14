@@ -5,6 +5,7 @@
 + [Palindrome Linked List](#palindrome-linked-list)
 + [Merge Two Sorted Lists](#merge-two-sorted-lists)
 + [Remove nth Node From End of List](#remove-nth-node-from-end-of-list)
++ [Reorder List](#reorder-list)
 
 ## Reverse Linked List
 
@@ -134,4 +135,69 @@ class Solution:
             prev.next = nxt.next
             nxt.next = None
         return head
+```
+
+## Reorder List
+
+https://leetcode.com/problems/reorder-list/
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverse_list(self, head):
+        prev = None
+        curr = head       
+        while curr is not None:            
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next       
+        return prev
+      
+      
+    def get_middle_of_list(self, head):
+        if head is None:
+            return head
+        slow = head
+        fast = head
+        while fast is not None and fast.next is not None:
+            prev_slow = slow
+            slow = slow.next
+            fast = fast.next.next
+        if fast is None:
+            prev_slow.next = None
+            return slow
+        else:
+            res = slow.next
+            slow.next = None
+            return res
+      
+        
+    def merge_lists(self, left, right):
+        cur_left = left
+        cur_right = right
+        
+        while cur_left is not None and cur_right is not None:
+            next_left = cur_left.next
+            next_right = cur_right.next
+            
+            cur_left.next = cur_right
+            cur_right.next = next_left
+            
+            cur_left = next_left
+            cur_right = next_right
+          
+        return left    
+        
+        
+    def reorderList(self, head):
+        prev_middle = self.get_middle_of_list(head)
+        first = head
+        second = prev_middle
+        second = self.reverse_list(second)
+        head = self.merge_lists(first, second)
 ```
