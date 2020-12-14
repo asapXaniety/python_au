@@ -1,6 +1,6 @@
 # Tree
 
-+ [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)\
++ [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)
 
 ## Maximum Depth of Binary Tree
 
