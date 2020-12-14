@@ -3,6 +3,7 @@
 + [Max Consecutive Ones](#max-consecutive-ones)
 + [Reshape The Matrix](#reshape-the-matrix)
 + [Flipping an Image](#flipping-an-image)
++ [Move Zeroes](#move-zeroes)
 
 ## Max Consecutive Ones
 
@@ -59,4 +60,20 @@ class Solution:
             for j in range(len(A[i])):
                 A[i][j] = 1 - A[i][j]
         return A
+```
+
+## Move Zeroes
+
+https://leetcode.com/problems/move-zeroes/
+
+```python
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        k = 0
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                nums[k] = nums[i]
+                k += 1
+        for i in range(k, len(nums)):
+            nums[i] = 0
 ```
