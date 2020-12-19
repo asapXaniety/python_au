@@ -4,6 +4,7 @@
 + [Reshape The Matrix](#reshape-the-matrix)
 + [Flipping an Image](#flipping-an-image)
 + [Move Zeroes](#move-zeroes)
++ [Image Smoother](#image-smoother)
 
 ## Max Consecutive Ones
 
@@ -76,4 +77,27 @@ class Solution:
                 k += 1
         for i in range(k, len(nums)):
             nums[i] = 0
+```
+
+## Image Smoother
+
+https://leetcode.com/problems/image-smoother/
+
+```python
+class Solution:
+    def imageSmoother(self, M: List[List[int]]) -> List[List[int]]:
+        Height = len(M)
+        Width = len(M[0])
+        res = [[0] * Width for _ in range(Height)]
+        for i in range(Height):
+            for j in range(Width):
+                k = 0
+                s = 0
+                for i_k in range(i-1, i+2):
+                    for j_k in range(j-1, j+2):
+                        if 0 <= i_k < Height and 0 <= j_k < Width:
+                            s = s + M[i_k][j_k]
+                            k = k + 1
+                res[i][j] = floor(s/k)
+        return res
 ```
