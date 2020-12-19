@@ -2,6 +2,7 @@
 
 + [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)
 + [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
++ [Invert Binary Tree](#invert-binary-tree)
 
 ## Maximum Depth of Binary Tree
 
@@ -64,4 +65,23 @@ class Solution:
         result = []
         inorder(root, result)
         return result
+```
+
+## Invert Binary Tree
+
+https://leetcode.com/problems/invert-binary-tree/
+
+```python
+class Solution:
+    def invert(self, node):
+            node.right, node.left = node.left, node.right
+            if node.left:
+                self.invert(node.left)
+            if node.right:
+                self.invert(node.right)
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return root
+        self.invert(root)
+        return root
 ```
