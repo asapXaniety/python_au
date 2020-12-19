@@ -5,6 +5,7 @@
 + [Invert Binary Tree](#invert-binary-tree)
 + [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
 + [Kth Smallest Element in a BST](#kth-smallest-element-in-a-bst)
++ [Validate Binary Search Tree](#validate-binary-search-tree)
 
 ## Maximum Depth of Binary Tree
 
@@ -126,4 +127,23 @@ class Solution:
         nodes = []
         self.do(root, nodes)
         return nodes[k-1]
+```
+
+## Validate Binary Search Tree
+
+https://leetcode.com/problems/validate-binary-search-tree/
+
+```python
+class Solution:
+    def DFS(self, node, mini, maxi):
+        if not node:
+            return True
+        if node.val >= maxi or node.val <= mini:
+            return False
+        left = self.DFS(node.left, mini, node.val)
+        right = self.DFS(node.right, node.val, maxi)
+        return left and right
+        
+    def isValidBST(self, root: TreeNode) -> bool:
+        return self.DFS(root, float('-inf'), float('inf'))
 ```
