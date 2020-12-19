@@ -5,6 +5,7 @@
 + [Flipping an Image](#flipping-an-image)
 + [Move Zeroes](#move-zeroes)
 + [Image Smoother](#image-smoother)
++ [Transpose Matrix](#transpose-matrix)
 
 ## Max Consecutive Ones
 
@@ -99,5 +100,21 @@ class Solution:
                             s = s + M[i_k][j_k]
                             k = k + 1
                 res[i][j] = floor(s/k)
+        return res
+```
+
+## Transpose Matrix
+
+https://leetcode.com/problems/transpose-matrix/
+
+```python
+class Solution:
+    def transpose(self, A: List[List[int]]) -> List[List[int]]:
+        res = []
+        for i in range(len(A[0])):
+            arr = []
+            for j in range(len(A)):
+                arr.append(A[j][i])
+            res.append(arr)
         return res
 ```
