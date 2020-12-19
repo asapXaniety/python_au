@@ -7,6 +7,7 @@
 + [Kth Smallest Element in a BST](#kth-smallest-element-in-a-bst)
 + [Validate Binary Search Tree](#validate-binary-search-tree)
 + [Symmetric Tree](#symmetric-tree)
++ [Binary Search Tree Iterator](#binary-search-tree-iterator)
 
 ## Maximum Depth of Binary Tree
 
@@ -168,4 +169,31 @@ class Solution:
         if root is None:
             return True
         return self.is_same(root.left, root.right)
+```
+
+## Binary Search Tree Iterator
+
+https://leetcode.com/problems/binary-search-tree-iterator/
+
+```python
+class BSTIterator:
+
+    def __init__(self, root: TreeNode):
+        self.stack = []
+        while root:
+            self.stack.append(root)
+            root = root.left
+            
+    def next(self) -> int:
+        res = self.stack.pop()
+        root = res
+        root = root.right
+        if root:
+            while root:
+                self.stack.append(root)
+                root = root.left
+        return res.val
+    
+    def hasNext(self) -> bool:
+        return self.stack != []
 ```
