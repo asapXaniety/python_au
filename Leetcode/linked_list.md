@@ -5,6 +5,7 @@
 + [Palindrome Linked List](#palindrome-linked-list)
 + [Merge Two Sorted Lists](#merge-two-sorted-lists)
 + [Remove nth Node From End of List](#remove-nth-node-from-end-of-list)
++ [Linked List Cycle II](#linked-list-cycle-ii)
 
 ## Reverse Linked List
 
@@ -134,4 +135,28 @@ class Solution:
             prev.next = nxt.next
             nxt.next = None
         return head
+```
+
+## Linked List Cycle II
+
+https://leetcode.com/problems/linked-list-cycle-ii/
+
+```python
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        bol = False
+        first = second = head
+        while (second is not None and second.next is not None):
+            first = first.next
+            second = second.next.next
+            if (first == second):
+                bol = True
+                break
+        if bol is False:
+            return None
+        second = head
+        while (first != second):
+            first = first.next
+            second = second.next
+        return first
 ```
