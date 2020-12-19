@@ -4,6 +4,7 @@
 + [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
 + [Invert Binary Tree](#invert-binary-tree)
 + [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
++ [Kth Smallest Element in a BST](#kth-smallest-element-in-a-bst)
 
 ## Maximum Depth of Binary Tree
 
@@ -106,4 +107,23 @@ class Solution:
         res = []
         self.DFS(root, res, 0)
         return res
+```
+
+## Kth Smallest Element in a BST
+
+https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+
+```python
+class Solution:
+    def do(self, cur, nodes):
+        if cur is None:
+            return 0
+        self.do(cur.left, nodes)
+        nodes.append(cur.val)
+        self.do(cur.right, nodes)
+        
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        nodes = []
+        self.do(root, nodes)
+        return nodes[k-1]
 ```
