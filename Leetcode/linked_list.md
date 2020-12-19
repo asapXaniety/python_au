@@ -137,3 +137,26 @@ class Solution:
         return head
 ```
 
+## Linked List Cycle II
+
+https://leetcode.com/problems/linked-list-cycle-ii/
+
+```python
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        bol = False
+        first = second = head
+        while (second is not None and second.next is not None):
+            first = first.next
+            second = second.next.next
+            if (first == second):
+                bol = True
+                break
+        if bol is False:
+            return None
+        second = head
+        while (first != second):
+            first = first.next
+            second = second.next
+        return first
+```
