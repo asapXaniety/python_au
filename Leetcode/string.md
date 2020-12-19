@@ -4,6 +4,7 @@
 + [Reverse string](#reverse-string)
 + [Reverse vowels of a string](#reverse-vowerls-of-a-string)
 + [Reverse Words in a String III](#reverse-words-in-a-string-iii)
++ [To Lower Case](#to-lower-case)
 
 
 ## Valid Anagram
@@ -71,4 +72,20 @@ class Solution:
             res += elem[::-1]
             res += " "
         return res[:-1:]
+```
+
+## To Lower Case
+
+https://leetcode.com/problems/to-lower-case/
+
+```python
+class Solution:
+    def toLowerCase(self, str: str) -> str:
+        res = ""
+        for elem in str:
+            if 'A' <= elem <= 'Z':
+                res = res + chr(ord(elem) + 32)
+            else:
+                res = res + elem
+        return res
 ```
