@@ -15,7 +15,7 @@ def prepare_headers():
 
 
 def get_lines_from_file():
-    f = open('links.txt', 'r')
+    f = open('links.txt')
     file = f.readlines()
     f.close()
     return file
@@ -37,11 +37,11 @@ def check_message(pull):
 def print_pull(file):
     for lines in file:
         line = lines[-1]
-        username = line[29:-15]
+        username = line[23:-15]
         print(username)
         all_pulls = requests.get(line)
         print(all_pulls)
-        print("* Pull Request title must start with right prefix")
+        print("* Pull Request title must start with right prefix in {}".format(PREFIXES))
         for pull in all_pulls.json():
             if check_message(pull) is False:
                 print(pull['title'])
@@ -50,7 +50,7 @@ def print_pull(file):
 def verif(file):
     for lines in file:
         line = lines[:-1]
-        username = line[29:-15]
+        username = line[23:-15]
         print(username)
         all_pulls = requests.get(line)
         print(all_pulls)
