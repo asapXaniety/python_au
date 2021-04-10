@@ -20,7 +20,7 @@ def prepare_headers():
 def prepare_body(pull, comment):
     return {
         'body': f"{comment}",
-        'path': requests.get(pull['url'] + '/files', headers=prepare_headers()).json()[0]['filename'],
+        'path': requests.get(pull['url'], headers=prepare_headers()).json(),
         'position': 1,
         'commit_id': pull['head']['sha']
     }
