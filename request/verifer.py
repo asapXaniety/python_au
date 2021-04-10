@@ -1,5 +1,6 @@
 import requests
 import json
+import datetime
 
 
 TOKEN = ''
@@ -45,7 +46,7 @@ def check_prefix(pull):
 def get_users_pulls(username, repos_name, state):
     url = f'https://api.github.com/repos/{username}/{repos_name}/pulls'
     pulls = requests.get(url, headers=prepare_headers())
-    print(pulls.status_code)
+    #print(pulls.status_code)
     return pulls.json()
 
 
@@ -74,11 +75,47 @@ def send_pull_comment(pull, comment):
     return pull['html_url']
 
 
+def convert_string_to_date(date):
+    date_format = "%Y-%m-%dT%H:%M:%SZ"
+    return datetime.strptime(date, date_format)
+
+
+def get_date_of_comment(pull, author):
+    r = requests.get(pull['review_comments_url'], headers=prepare_headers()).json()
+    if len(r) > 0:
+        if r[-1]['user']['login'] == author:
+            return convert_string_to_date([-1]['created_at'])
+    return None
+
+
+def get_date_of_commit(pull):
+    return convert_string_to_date(pull['commit']['author']['date'])
+
+
+def compare_commits(pull, date):
+    comments = list()
+    all_commits = get_all_commits(pull)
+    for commit in all_commits:
+        if get_date_of_comment(commit) > date:
+            comment = check_prefix(commit['commit']['message'])
+            if len(comment) > 0:
+                comments.append(comment)
+    if len(comments) != 0:
+        comments.insert(0, f"Incorrect comment")
+        send_pull_comment(pull, '\n\n'.join(comments))
+
+
 if __name__ == '__main__':
     repos_name = 'python_au'
     usernames = ['asapxaniety', 'OcTatiana', 'Vasis3038']
     state = 'open'
-    for user in usernames:
-        pulls = get_users_pulls(user, repos_name, state)
-        for param in pulls:
-            verify(param)
+    #for user in usernames:
+        #pulls = get_users_pulls(user, repos_name, state)
+        #for param in pulls:
+            #verify(param)
+    name = 'asapxaniety'
+    date_of_comment = get_date_of_comment(name, reviewer)
+    if date_of_comment is not None:
+        compare_commits(name, date_of_comment)
+    else:
+        verify(name)
