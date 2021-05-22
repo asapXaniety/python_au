@@ -107,14 +107,14 @@ def compare_commits(pull, date):
 
 if __name__ == '__main__':
     repos_name = 'python_au'
-    usernames = ['asapxaniety', 'OcTatiana', 'Vasis3038']
+    usernames = ['asapxaniety', 'alexarlord-boop', 'Vasis3038']
     state = 'open'
     #for user in usernames:
         #pulls = get_users_pulls(user, repos_name, state)
         #for param in pulls:
             #verify(param)
     name = 'asapxaniety'
-    date_of_comment = get_date_of_comment(name, reviewer)
+    date_of_comment = get_date_of_comment(name)
     if date_of_comment is not None:
         compare_commits(name, date_of_comment)
     else:
