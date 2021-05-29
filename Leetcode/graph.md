@@ -3,6 +3,7 @@
 + [Course Schedule II](#course-schedule-ii)
 + [Course Schedule](#course-schedule)
 + [Number of Islands](#number-of-islands)
++ [Is Graph Bipartite](is-graph-bipartite)
 
 ## Course Schedule II
 
@@ -78,5 +79,31 @@ def numIslands(self, grid):
                                 stack.append([p+k,q+l])
                     grid[p][q]=0
     return cnt
+```
+
+## Is Graph Bipartite
+
+https://leetcode.com/problems/is-graph-bipartite/
+
+```python
+def isBipartite(self, graph):
+    colors = [0]*len(graph) 
+        
+    def dfs(node, node_color): 
+        if colors[node] != 0:
+            return colors[node] == node_color           
+            
+            
+        colors[node] = node_color                   
+        for neighbor in graph[node]:                
+            if not dfs(neighbor, -1*node_color):    
+                return False
+        return True 
+        
+    for node in range(len(graph)):
+        if colors[node] == 0 and not dfs(node, 1):  
+            return False                            
+            
+    return True
 ```
 
