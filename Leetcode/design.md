@@ -1,7 +1,8 @@
 # Design
 
-+[Min Stack](#min-stack)
-+[Implement Queue using Stacks](#implement-queue-using-stacks)
++ [Min Stack](#min-stack)
++ [Implement Queue using Stacks](#implement-queue-using-stacks)
++ [Implement Stack using Queues](#implement-stack-using-queues)
 
 ## Min Stack
 
@@ -51,4 +52,29 @@ class MyQueue:
 
     def empty(self):
         return not self.item
+```
+
+## Implement Stack using Queues
+
+https://leetcode.com/problems/implement-stack-using-queues/
+
+```python
+class MyStack:
+
+    def __init__(self):
+        self.queue = []
+
+
+    def push(self, x):
+        self.queue.append(x)
+
+    def pop(self):
+        return self.queue.pop()
+
+
+    def top(self):
+        return self.queue[-1]
+
+    def empty(self):
+        return self.queue == []
 ```
