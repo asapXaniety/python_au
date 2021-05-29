@@ -5,6 +5,7 @@
 + [Number of Islands](#number-of-islands)
 + [Is Graph Bipartite](is-graph-bipartite)
 + [Cheapest Flights Within K Stops](#cheapest-flights-within-k-stops)
++ [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix)
 
 ## Course Schedule II
 
@@ -130,4 +131,28 @@ def findCheapestPrice(self, n, flights, src, dst, K):
 		for v, w in graph[idx]:
 			heappush(q, (dist+w, v, path_len+1))
 	return -1
+```
+
+## Shortest Path in Binary Matrix
+
+https://leetcode.com/problems/shortest-path-in-binary-matrix/
+
+```python
+def shortestPathBinaryMatrix(self, grid):
+    if grid[0][0] or grid[-1][-1]:
+        return -1
+    rows, cols = len(grid), len(grid[0])
+    directions = [(1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1)]
+    q = deque([(0, 0, 1)])
+        
+    while q:
+        i, j, steps = q.popleft()
+        if (i, j) == (rows-1, cols-1):
+            return steps
+        for di, dj in directions:
+            ii, jj = i+di, j+dj
+            if 0 <= ii < rows and 0 <= jj < cols and not grid[ii][jj]:
+                grid[ii][jj] = 1  # mark as visited
+                q.append((ii, jj, steps + 1))
+    return -1
 ```
