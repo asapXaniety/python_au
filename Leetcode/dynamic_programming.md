@@ -1,6 +1,7 @@
 # Dynamic-Programming
 
 + [House Robber II](#house-robber-ii)
++ [House Robber](#house-robber)
 
 ## House Robber II
 
@@ -24,3 +25,24 @@ def rob(self, nums):
         
     return max( f(nums[:-1]), f(nums[1:]))
 ```
+
+## House Robber
+
+https://leetcode.com/problems/house-robber/
+
+```python
+def rob(self, nums):
+    profits = [0]
+        
+    for i in range(len(nums)):
+            
+        if i == 0:
+            profits.append(nums[i])
+                
+        else:
+            p = max(profits[i], profits[i-1]+nums[i])
+            profits.append(p)
+                
+    return profits[-1]
+```
+
