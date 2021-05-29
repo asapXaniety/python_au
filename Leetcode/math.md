@@ -7,6 +7,7 @@
 + [Base 7](#base-7)
 + [Sqrt(x)](#sqrtx)
 + [Largest Perimeter Triangle](#largest-perimeter-triangle)
++ [K Closest Points to Origin](#k-closest-points-to-origin)
 
 ## Reverse Integer
 
@@ -157,4 +158,15 @@ class Solution:
             else:
                 return A[i-1] + A[i-2] + A[i-3]
         return 0
+```
+
+## K Closest Points to Origin
+
+https://leetcode.com/problems/k-closest-points-to-origin/
+
+```python
+def kClosest(self, points, k):
+    d = lambda l : (l[0] ** 2 + l[1] ** 2)**0.5
+    points.sort(key = d)
+    return points[ :k]
 ```
