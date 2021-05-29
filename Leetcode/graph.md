@@ -6,6 +6,7 @@
 + [Is Graph Bipartite](is-graph-bipartite)
 + [Cheapest Flights Within K Stops](#cheapest-flights-within-k-stops)
 + [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix)
++ [Maximum Depth of N-ary Tree](#maximum-depth-of-n-ary-tree)
 
 ## Course Schedule II
 
@@ -155,4 +156,19 @@ def shortestPathBinaryMatrix(self, grid):
                 grid[ii][jj] = 1  # mark as visited
                 q.append((ii, jj, steps + 1))
     return -1
+```
+
+## Maximum Depth of N-ary Tree
+
+https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
+
+```python
+def maxDepth(self, root):
+    if root == None:
+        return 0
+    else:
+        maxi = 0
+        for i in root.children:
+            maxi = max(maxi, self.maxDepth(i))
+        return 1+maxi
 ```
