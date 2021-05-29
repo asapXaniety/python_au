@@ -2,6 +2,7 @@
 
 + [Course Schedule II](#course-schedule-ii)
 + [Course Schedule](#course-schedule)
++ [Number of Islands](#number-of-islands)
 
 ## Course Schedule II
 
@@ -51,5 +52,31 @@ def canFinish(self, numCourses, prerequisites):
             if g[v] == 0:
                 S.append(v)
     return not any(g)
+```
+
+## Number of Islands
+
+https://leetcode.com/problems/number-of-islands/
+
+```python
+def numIslands(self, grid):
+    r=len(grid)
+    c=len(grid[0])
+    cnt=0
+    dirn=[(-1,0),(0,-1),(1,0),(0,1)]
+    for i in range(r):
+        for j in range(c):
+            if(grid[i][j]=="1"):
+                stack=[]
+                stack.append([i,j])
+                cnt=cnt+1
+                while(len(stack)>0):
+                    [p,q]=stack.pop()
+                    for k,l in dirn:
+                        if(0<=p+k<r and 0<=q+l<c):
+                            if(grid[p+k][q+l]=="1"):
+                                stack.append([p+k,q+l])
+                    grid[p][q]=0
+    return cnt
 ```
 
